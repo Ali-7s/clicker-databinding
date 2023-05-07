@@ -23,18 +23,30 @@ class MainActivity : AppCompatActivity() {
 
         val firstButton = binding.button1
         val secondButton = binding.button2
-        firstButton.text = "Increment"
-        secondButton.text = "Decrement"
+        val resetButton = binding.button3
+        firstButton.text = getString(R.string.increment)
+        secondButton.text = getString(R.string.decrement)
+        resetButton.text = getString(R.string.reset)
+
 
         firstButton.setOnClickListener {
+            val prevCount = count.get()
             count.set(count.get() + 1)
-            toast.setText("Incremented!")
+            toast.setText("Incremented! " + prevCount + " -> " + count.get())
             toast.show()
         }
 
         secondButton.setOnClickListener {
+            val prevCount = count.get()
             count.set(count.get() - 1)
-            toast.setText("Decremented!")
+            toast.setText("Decremented! " + prevCount + " -> " + count.get())
+            toast.show()
+        }
+
+        resetButton.setOnClickListener {
+            val prevCount = count.get()
+            count.set(0)
+            toast.setText("Reset! " + prevCount + " -> " + count.get())
             toast.show()
         }
     }
